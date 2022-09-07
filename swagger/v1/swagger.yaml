@@ -1,0 +1,70 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/accounts/{id}/transfer":
+    post:
+      summary: Transfer money using email OR phone number (pass either phone number
+        or email it will work)
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction Successful
+          content:
+            application/json:
+              example:
+                receiver_email: 'steve@gmail.com'
+                amount: 10
+                receiver_phone_number: '+923456556676'
+        '403':
+          description: Transaction failure for non verified account (or any other failure)
+          content:
+            application/json:
+              example:
+                receiver_email: 'notverified@gmail.com'
+                amount: 10
+                receiver_phone_number: '+923454856676'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                receiver_email:
+                  type: string
+                receiver_phone_number:
+                  type: string
+                amount:
+                  type: integer
+              required:
+              - id
+              - email
+              - amount
+  "/accounts/{id}/transaction_history":
+    get:
+      summary: Fetch your account transactions history
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transactions
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000/api/v1

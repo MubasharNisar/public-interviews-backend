@@ -16,10 +16,10 @@ module Verification
     private
 
     def find_receiver_account
-      if @params[:email]
-        Account.find_by_email(@params[:email])
+      if @params[:receiver_email]
+        Account.find_by_email(@params[:receiver_email])
       else
-        Account.find_by_phone_number(@params[:phone_number])
+        Account.find_by_phone_number(@params[:receiver_phone_number])
       end
     end
   end

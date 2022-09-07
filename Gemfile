@@ -10,6 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'money-rails'
+gem 'rswag'
 
 group :development, :test do
   gem 'dotenv-rails'

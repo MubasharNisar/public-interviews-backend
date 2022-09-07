@@ -27,7 +27,7 @@ module Api
       end
       
       def account_params
-        params.permit(:email, :phone_number, :amount)
+        params.permit(:receiver_email, :receiver_phone_number, :amount)
       end
 
     end
